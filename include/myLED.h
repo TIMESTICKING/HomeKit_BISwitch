@@ -30,16 +30,16 @@ void setup_led(){
 void LED_loop(void *para){
     LedPin *led = new LedPin(HSP_LED);
     while (1){
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 50; i++)
         {
             led->set(i);
-            vTaskDelay(pdMS_TO_TICKS(10));
+            vTaskDelay(pdMS_TO_TICKS(80));
         }
         vTaskDelay(pdMS_TO_TICKS(200));
-        for (int i = 100; i > 0; i--)
+        for (int i = 50; i > 0; i--)
         {
             led->set(i);
-            vTaskDelay(pdMS_TO_TICKS(10));
+            vTaskDelay(pdMS_TO_TICKS(80));
         }
         vTaskDelay(pdMS_TO_TICKS(200));
     }

@@ -49,7 +49,7 @@ void setup() {
 
   xTaskCreate(touch_scan, "touch_scan", 1024, NULL, 0, &touch_scan_handle);
   xTaskCreate(toggle_scan, "toggle_scan", 1024, NULL, 0, &toggle_stat_handle);
-  xTaskCreate(LED_loop, "LED_loop", 2048, NULL, 0, &LED_loop_handle);
+  xTaskCreate(LED_loop, "LED_loop", 2048, NULL, 1, &LED_loop_handle);
 }
 
 void loop() {
