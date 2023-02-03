@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include "HomeSpan.h"
 #include "dev_switch.h"
+#include "globalVars.h"
 
 #define time_gap_thresh 16   //total time gap = time_gap_thresh * 50 (ms)
 #define toggle_times    3
@@ -41,6 +42,10 @@ void toggle_scan(void *para){
                 dev_switch->flip = !dev_switch->flip;
                 digitalWrite(dev_switch->LedPin, !digitalRead(dev_switch->LedPin));
                 init_state_machine();
+
+                #if HSP_LED_ME_USE
+                    blink_led(1, 1500);
+                #endif
 
                 LOG0("switch status!");
             }else{

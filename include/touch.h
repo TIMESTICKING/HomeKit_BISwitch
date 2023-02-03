@@ -1,9 +1,10 @@
 #pragma once
 
 #include "dev_switch.h"
+#include "globalVars.h"
 
 boolean if_touch(){
-  int thresh = 30;
+  int thresh = 60;
   if (touchRead(TOUCH_PIN) < thresh){
     return true;
   }
@@ -24,6 +25,11 @@ void touch_scan(void *para){
         digitalWrite(dev_switch->LedPin, !digitalRead(dev_switch->LedPin));
         dev_switch->power->setVal(!dev_switch->power->getVal());
         sta = 2; //第一次触发完成
+
+        #if HSP_LED_ME_USE
+          blink_led(2, 300);
+        #endif
+
         LOG0("touched!\n");
       }else{
         sta = 0;
