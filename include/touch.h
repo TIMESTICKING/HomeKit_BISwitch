@@ -4,7 +4,7 @@
 #include "globalVars.h"
 
 boolean if_touch(){
-  int thresh = 60;
+  int thresh = 80;
   if (touchRead(TOUCH_PIN) < thresh){
     return true;
   }
