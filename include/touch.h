@@ -4,7 +4,7 @@
 #include "globalVars.h"
 
 boolean if_touch(){
-  int thresh = 80;
+  int thresh = 40;
   if (touchRead(TOUCH_PIN) < thresh){
     return true;
   }
@@ -19,9 +19,12 @@ void touch_scan(void *para){
     if (sta == 0 && if_touch()){
       sta = 1; //刚触发
       i = 0; //重新计数
-    }else if (sta == 1 && i == 10){
+    }else if (sta == 1){
       // 200ms 再次检查
-      if (if_touch()){
+      if (i < 10){
+        if (!if_touch())
+          sta = 0; //检查时间段内未触发
+      }else if (if_touch() && i == 10){
         digitalWrite(dev_switch->LedPin, !digitalRead(dev_switch->LedPin));
         dev_switch->power->setVal(!dev_switch->power->getVal());
         sta = 2; //第一次触发完成

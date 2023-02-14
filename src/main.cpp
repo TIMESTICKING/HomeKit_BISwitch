@@ -20,6 +20,7 @@ void homespan_init(){
     pinMode(32, OUTPUT);
     homeSpan.setStatusPin(32);
   #endif
+  // homeSpan.setWifiCredentials("ABCDEFG", "70051400");
   homeSpan.setWifiCredentials("Xiaomi_0A9C", "ljx70051400");
 }
 
